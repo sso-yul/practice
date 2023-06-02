@@ -19,11 +19,12 @@
 
 <body>
   <div class="wrap">
+  	<form action="" id="form" class="frm" method="post">
     <div class="sec01">
       <a href="#">
         <div class="proimg"><img src="${path}/resources/images/img/profile.png"></div>
       </a>
-      <div class="nickname">피카츄 님</div>
+      <div class="nickname">피카츄</div>
     </div>
 
     <div class="sec02">
@@ -36,6 +37,7 @@
     <div class="sec03">
         <input type="submit" value="보내기">
     </div>
+    </form>
   </div>
     
 </body>

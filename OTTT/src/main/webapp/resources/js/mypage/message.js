@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	//버튼 색, 기본 버튼 받은 쪽지함 설정
+	//버튼 색, 기본 버튼 받은 쪽지함 설정 - 보낸 쪽지 색상 설정 안 먹음 에라이
 	let currentButton = null; // 선택한 버튼을 저장하는 변수
 	const recvButton = document.getElementById("btn-recv") // 받은 쪽지 버튼 요소
 	const sendButton = document.getElementById("btn-send") // 보낸 쪽지 버튼 요소
@@ -49,7 +49,7 @@ $(document).ready(function() {
 	        
 	        $(".left-bottom table").empty()
 	        
-	        if(data.length === 0 || data.length === undefined) {
+	        if(!Array.isArray(data) || data.length === 0) {
 	        	$(".left-bottom table").append('<div style="display: flex; margin-top: 20px; justify-content: center; color: #8f8f8f;">보관된 쪽지가 없습니다.</div>')
 	        } else {
 	        	let rows = ''
@@ -66,25 +66,49 @@ $(document).ready(function() {
 	        	})
 	        	$(".left-bottom table").append(rows)
 	        }
+	        location.href="/ottt/mypage/message/recv"
 	      },
 	      error: function() {
 	        alert("error")
 	      }
 	    })
 	  })
-	
-	$("#btn-send").click(function() {
-		$.ajax({
-			url: '/ottt/mypage/message/send',
-			type: 'GET',
-			success: function(data) {
-				// 보낸 쪽지 목록을 테이블에 추가하는 로직 작성.
-			},
-			error: function() {
-				alert("error")
-				}
-			})
-		})
+	  
+    $("#btn-send").click(function() {
+        $.ajax({
+          url: '/ottt/mypage/message/send',
+          type: 'GET',
+          success: function(data) {
+            console.log("보낸 쪽지 목록을 가져옴")
+            
+            $(".left-bottom table").empty()
+
+            if(!Array.isArray(data) || data.length === 0) {
+	        	$(".left-bottom table").append('<div style="display: flex; margin-top: 20px; justify-content: center; color: #8f8f8f;">보관된 쪽지가 없습니다.</div>')
+	        } else {
+                let rows = ''
+                
+                $.each(data, function(index, message) {
+                    rows += '<tr class="title-line" style="font-weight: 200">'
+                    rows += '<td class="msg-img">픞</td>'
+                    rows += '<td class="msg-nicknm">'	+ message.user_nicknm	+ '</td>'
+                    rows += '<td class="msg-name">'		+ message.receive_user_no	+ '</td>'
+                    rows += '<td class="msg-content">'	+ message.content		+ '</td>'
+                    rows += '<td class="msg-time">'		+ message.send_date		+ '</td>'
+                    rows += '<td class="msg-del"><button class="delBtn" style="border: none; color: red;"><i class="fas fa-times"></i></button></td>'
+                    rows += '</tr>'
+                })
+                $(".left-bottom table").append(rows)
+            }
+            location.href="/ottt/mypage/message/send"
+          },
+          error: function() {
+            alert("error")
+          }
+        })
+      })
+      
+      
 
 
 

@@ -17,7 +17,6 @@ import com.ottt.ottt.domain.PageResolver;
 import com.ottt.ottt.domain.SearchItem;
 import com.ottt.ottt.dto.ArticleDTO;
 import com.ottt.ottt.dto.UserDTO;
-import com.ottt.ottt.service.community.notice.ArticleService;
 import com.ottt.ottt.service.community.notice.ArticleServiceImpl;
 
 

@@ -98,16 +98,18 @@
 			<br />
 			<div class="paging-container">
 				<div class="paging">
-				
+					
+					<!-- c:if문으로.... 여기도........이거맞나 -->
+					
 					<c:if test="${totalCnt != null || totalCnt != 0 }">
 						<c:if test="${mpr.showPrev }">
-							<a class="page" href="<c:url value="/mypage/message/recv${mpr.msc.getQueryString(mpr.beginPage-1) }" />">&lt;</a>
+							<a class="page" href="<c:url value="/mypage/message${mpr.msc.getQueryString(mpr.beginPage-1) }" />">&lt;</a>
 						</c:if>
 						<c:forEach var="i" begin="${mpr.beginPage }" end="${mpr.endPage }">
-							<a class="page" href="<c:url value="/mypage/message/recv${mpr.msc.getQueryString(i) }" />">${i }</a>
+							<a class="page" href="<c:url value="/mypage/message${mpr.msc.getQueryString(i) }" />">${i }</a>
 						</c:forEach>
 						<c:if test="${mpr.showNext }">
-							<a class="page" href="<c:url value="/mypage/message/recv${mpr.msc.getQueryString(mpr.endPage+1) }" />">&gt;</a>
+							<a class="page" href="<c:url value="/mypage/message${mpr.msc.getQueryString(mpr.endPage+1) }" />">&gt;</a>
 						</c:if>
 					</c:if>
 					
